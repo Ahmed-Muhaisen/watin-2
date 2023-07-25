@@ -6,6 +6,7 @@ namespace App\Models;
 use App\Models\base;
 use App\Models\role;
 use App\Models\restaurant;
+use Laravel\Cashier\Billable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,7 +15,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable ,SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable ,SoftDeletes ,Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -54,7 +55,7 @@ class User extends Authenticatable
      }
 
      public function role(){
-        return $this->belongsToMany(role::class,'role_user');
+        return $this->belongsTo(role::class,'role_id')->withDefault();
      }
 }
 

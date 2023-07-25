@@ -11,6 +11,11 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\RestaurantController;
 
+use App\Http\Controllers\setting\RoleController;
+use App\Http\Controllers\setting\RoleUserController;
+use App\Http\Controllers\setting\PermissionController;
+use App\Http\Controllers\setting\RolePermissionController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,9 +55,20 @@ Route::prefix('website')->name('website.')->group(function(){
 
     Route::get('product/{product:name}',[WebsiteController::class,'product'])->name('product');
 
-    Route::get('my_orders',[WebsiteController::class,'my_orders'])->name('my_orders');
+    Route::get('my_Cards',[WebsiteController::class,'my_Cards'])->name('my_Cards');
 
-    Route::post('order/{product:id}',[WebsiteController::class,'order'])->middleware('auth')->name('order.store');
+    Route::post('payCard',[WebsiteController::class,'payCard'])->middleware('auth')->name('payCard');
+
+    Route::post('stripe',[WebsiteController::class,'stripe'])->middleware('auth')->name('stripe');
+
+    Route::post('stripePost',[WebsiteController::class,'stripePost'])->middleware('auth')->name('stripe.post');
+
+    Route::post('payCard',[WebsiteController::class,'payCard'])->middleware('auth')->name('payCard');
+
+
+    Route::post('addToCard/{product:id}',[WebsiteController::class,'addToCard'])->middleware('auth')->name('addToCard');
+
+    Route::delete('deleteFromCard/{id}',[WebsiteController::class,'deleteFromCard'])->middleware('auth')->name('deleteFromCard');
 
 });
 
@@ -110,6 +126,34 @@ Route::get('order/{id}/{user}/edit',[OrderController::class,'edit'])->name('orde
 Route::delete('order/{id}/{user}/destroy',[OrderController::class,'destroy'])->name('order.destroy_order');
 Route::resource('order',OrderController::class);
 
+
+Route::prefix('setting')->name('setting.')->group(function(){
+Route::get('role_permission/trash',[RolePermissionController::class,'trash'])->name('role_permission.trash');
+Route::get('role_permission/restore/{id}',[RolePermissionController::class,'restore'])->name('role_permission.restore');
+Route::delete('role_permission/forceDelete/{id}',[RolePermissionController::class,'forceDelete'])->name('role_permission.forceDelete');
+Route::resource('role_permission', RolePermissionController::class);
+
+
+Route::get('role_user/trash',[RoleUserController::class,'trash'])->name('role_user.trash');
+Route::get('role_user/restore/{id}',[RoleUserController::class,'restore'])->name('role_user.restore');
+Route::delete('role_user/forceDelete/{id}',[RoleUserController::class,'forceDelete'])->name('role_user.forceDelete');
+Route::resource('role_user', RoleUserController::class);
+
+
+
+Route::get('role/trash',[RoleController::class,'trash'])->name('role.trash');
+Route::get('role/restore/{id}',[RoleController::class,'restore'])->name('role.restore');
+Route::delete('role/forceDelete/{id}',[RoleController::class,'forceDelete'])->name('role.forceDelete');
+Route::resource('role',RoleController::class);
+
+
+Route::get('permission/trash',[PermissionController::class,'trash'])->name('permission.trash');
+Route::get('permission/restore/{id}',[PermissionController::class,'restore'])->name('permission.restore');
+Route::delete('permission/forceDelete/{id}',[PermissionController::class,'forceDelete'])->name('permission.forceDelete');
+Route::resource('permission',PermissionController::class);
+
+
+});
 });
 
 

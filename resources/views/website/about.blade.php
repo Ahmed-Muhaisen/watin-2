@@ -1,10 +1,3 @@
-@extends('website.master')
-@section('title', 'Home Page')
-@section('style_header','background:black;color:#fff;margin-bottom:100px')
-
-@section('contint')
-
-<div style="margin-top:100px "></div>
 
 <!-- ABOUT -->
 <section id="about" style="margin-bottom:110px; " data-stellar-background-ratio="0.5">
@@ -12,7 +5,7 @@
         <div class="row reverse-content" style="text-align:right;  ">
 
             <div class="col-md-6 col-sm-12">
-                <div class="about-info">
+                <div class="about-info" style="padding-bottom: 0;">
                     <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
                         <h4>Read our story</h4>
                         <h2>أطلب وجبتك المفضلة وإنتا مرتاح كلها تكة زر</h2>
@@ -29,18 +22,18 @@
                 </div>
             </div>
 
-            <div class="col-md-6 col-sm-12">
-                <div class="wow fadeInUp about-image" data-wow-delay="0.6s">
-                    <img src="{{asset('website_assets/images/about-image.jpg')}}" class="img-responsive" alt="">
-                </div>
+            <div class="col-md-6 col-sm-12" style="    display: flex;
+            justify-content: center;">
+                 <div class="wow fadeInUp about-image"      data-wow-delay="0.6s">
+                      <img src="{{asset($image)}}" style="margin: 0 ;auto; width: 468px; object-fit: cover; height: 362px;" class="img-responsive" alt="">
+                 </div>
             </div>
+
+
+
 
         </div>
     </div>
 </section>
 
 
-
-
-
-@endsection

@@ -6,6 +6,7 @@ use App\Models\base;
 use App\Models\User;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CategoryController extends Controller
 {
@@ -23,6 +24,7 @@ class CategoryController extends Controller
      }
     public function index()
     {
+         Gate::authorize('Category.index');
         $category=Category::get();
         $page='index';
         return view('category.index',compact('category','page'));
@@ -33,6 +35,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
+          Gate::authorize('Category.create');
         $page='Create';
         $category=new Category();
         return view('category.form',compact('page','category'));
@@ -46,6 +49,7 @@ class CategoryController extends Controller
 
      public function store(Request $request)
     {
+          Gate::authorize('Category.create');
            $validate_array= $this->base->validation($request,$action='store',$id='');
            $validate=$request->validate($validate_array);
             $this->base->create_data($image='',$validate);
@@ -66,6 +70,7 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
+        Gate::authorize('Category.Update');
         $page='Edit';
         $category=Category::find($id);
         return view('category.form',compact('page','category'));
@@ -76,6 +81,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        Gate::authorize('Category.Update');
         $validate_array= $this->base->validation($request,$action='update',$id);
         $validate=$request->validate($validate_array);
         $this->base->update_data($image='',$validate,$id);
@@ -89,6 +95,7 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
+        Gate::authorize('Category.delete');
 
         Category::findorfail($id)->delete();
         return redirect()->route('admin.category.index')
@@ -106,6 +113,7 @@ class CategoryController extends Controller
 
     public function restore(string $id)
     {
+         Gate::authorize('Category.restore');
         Category::withTrashed()->findorfail($id)->restore();
         return redirect()->route('admin.category.trash')->with('msg','تمت إستعادة المطعم من سلة المحذوفات بنجاح')->with('type','info');
     }
@@ -113,6 +121,7 @@ class CategoryController extends Controller
 
    public function forceDelete(string $id)
     {
+        Gate::authorize('Category.forceDelete');
         Category::withTrashed()->findorfail($id)->forceDelete();
         return redirect()->route('admin.category.trash')->with('msg','تم حذف المطعم بشكل نهائي')->with('type','danger');
     }

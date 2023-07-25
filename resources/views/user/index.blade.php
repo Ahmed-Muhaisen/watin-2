@@ -18,7 +18,9 @@
     @endif
 
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            @can('User.create', Auth::user())
             <a href="{{ route('admin.user.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm">إضافة مستخدم جديد</a>
+             @endcan
         </div>
         <!-- DataTales Example -->
      <div class="card shadow mb-4">

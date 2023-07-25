@@ -1,9 +1,3 @@
-@extends('website.master')
-@section('title', 'Home Page')
-@section('style_header','background:black;color:#fff')
-@section('contint')
-
-<div style="margin-top:100px "></div>
 
 
 <!-- MENU-->
@@ -27,7 +21,7 @@
             <div class="col-md-4 col-sm-6 image-container2">
                 <!-- MENU THUMB -->
                 <div class="menu-thumb image-hight2">
-                    <a href="{{ route('website.product',$item) }}" class="" title="American Breakfast">
+
                         <img src="{{asset($item->image)}}" class="img-responsive" alt="" style="object-fit:cover">
 
                         <div class="menu-info">
@@ -38,8 +32,17 @@
                             <div class="menu-price">
                                 <span>{{$item->price}}<span>شيكل</span></span>
                             </div>
+
                         </div>
-                    </a>
+                @if(!isset($title))
+                        <div class="menu-price addToCard">
+                            <form action="{{ route('website.addToCard',$item) }}" method="post">
+                                @csrf
+                           <button> <span>+ إضافة إلى السلة</span></button>
+                        </form>
+                        </div>
+
+                @endif
                 </div>
             </div>
             @endforeach
@@ -48,5 +51,3 @@
     </div>
 </section>
 
-
-@endsection

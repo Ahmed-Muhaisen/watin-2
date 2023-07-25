@@ -1,9 +1,4 @@
-@extends('website.master')
-@section('title', 'Home Page')
-@section('style_header','background:black;color:#fff')
-@section('contint')
 
-<div style="margin-top:100px "></div>
 <!-- Restaurants -->
 <section id="team" data-stellar-background-ratio="0.5">
     <div class="container">
@@ -42,7 +37,3 @@
         </div>
     </div>
 </section>
-
-
-
-@endsection

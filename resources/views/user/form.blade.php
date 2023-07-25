@@ -37,7 +37,7 @@
         <x-input title="كلمة المرور" type="password" name="password" value="" />
 
 
-        <x-select title="الصلاحية" name="type" :array="json_decode(json_encode(
+        <x-select title="الصلاحية" name="role_id" :array="json_decode(json_encode(
             [['id'=>1,'name'=>'مستخدم'],
             ['id'=>2,'name' =>'أدمن']]))" value="{{$user->type}}" />
 

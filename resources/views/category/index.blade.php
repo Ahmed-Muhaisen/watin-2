@@ -18,7 +18,9 @@
     @endif
 
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          @can('Category.create', Auth::user())
             <a href="{{ route('admin.category.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm">إضافة قسم جديد</a>
+          @endcan
         </div>
         <!-- DataTales Example -->
      <div class="card shadow mb-4">

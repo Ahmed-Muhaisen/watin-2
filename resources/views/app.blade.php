@@ -138,25 +138,87 @@
                 </div>
             </li>
             @endcan
+
+
+
             @can('Restaurant.index', Auth::user())
 
-
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#t6"
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#t16"
                     aria-expanded="true" aria-controls="collapseOne">
-                   <div class="contint-nave-link"> <i class="fas fa-fw fa-cog"></i>
-                    <span>الإعدادات العامة</span></div>
+                   <div class="contint-nave-link"> <i class="fa-solid fa-shop"></i>
+                    <span>إدارة الأدمن</span></div>
                 </a>
-                <div id="t6" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="t16" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
+
+                        <a class="collapse-item text-right" href="{{ route('admin.setting.role.index')}}">صفحة العرض</a>
+                        <a class="collapse-item text-right" href="cards.html">الإضافة</a>
+                        <a class="collapse-item text-right" href="cards.html">سلة المحذوفات</a>
                     </div>
                 </div>
             </li>
             @endcan
 
+
+
+            @can('Restaurant.index', Auth::user())
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#t17"
+                    aria-expanded="true" aria-controls="collapseOne">
+                   <div class="contint-nave-link"> <i class="fa-solid fa-shop"></i>
+                    <span>إدارة الصلاحيات</span></div>
+                </a>
+                <div id="t17" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+
+                        <a class="collapse-item text-right" href="{{ route('admin.setting.permission.index')}}">صفحة العرض</a>
+                        <a class="collapse-item text-right" href="cards.html">الإضافة</a>
+                        <a class="collapse-item text-right" href="cards.html">سلة المحذوفات</a>
+                    </div>
+                </div>
+            </li>
+            @endcan
+
+
+            @can('Restaurant.index', Auth::user())
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#t15"
+                    aria-expanded="true" aria-controls="collapseOne">
+                   <div class="contint-nave-link"> <i class="fa-solid fa-shop"></i>
+                    <span>إدارة صلاحيات الأدمن</span></div>
+                </a>
+                <div id="t15" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+
+                        <a class="collapse-item text-right" href="{{ route('admin.setting.role_permission.index')}}">صفحة العرض</a>
+                        <a class="collapse-item text-right" href="cards.html">الإضافة</a>
+                        <a class="collapse-item text-right" href="cards.html">سلة المحذوفات</a>
+                    </div>
+                </div>
+            </li>
+            @endcan
+
+            @can('Restaurant.index', Auth::user())
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#t18"
+                    aria-expanded="true" aria-controls="collapseOne">
+                   <div class="contint-nave-link"> <i class="fa-solid fa-shop"></i>
+                    <span>إدارة صلاحيات المستخدم</span></div>
+                </a>
+                <div id="t18" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+
+                        <a class="collapse-item text-right" href="{{ route('admin.setting.role_user.index')}}">صفحة العرض</a>
+                        <a class="collapse-item text-right" href="cards.html">الإضافة</a>
+                        <a class="collapse-item text-right" href="cards.html">سلة المحذوفات</a>
+                    </div>
+                </div>
+            </li>
+            @endcan
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>

@@ -45,7 +45,7 @@ return $name_image;
                 $name_image= $this->image_store($image);
                 $inputs_value_array['image']=$name_image;
             }
-            if(in_array('password',$inputs_value_array)&&$inputs_value_array['password']==null){
+            if(in_array('password',array_keys($inputs_value_array))&&$inputs_value_array['password']==null){
                 unset($inputs_value_array['password']);
             }
 

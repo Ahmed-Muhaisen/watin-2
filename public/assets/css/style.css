@@ -11,6 +11,16 @@ html{
     margin: 0;
 }
 
+
+#dataTable_wrapper .row:first-child div:last-child{
+    text-align: right ;
+}
+
+#dataTable_wrapper .row:first-child div{
+    text-align: left ;
+}
+
+
 body{
     font-family: 'Tajawal', sans-serif;
 }
@@ -20,7 +30,7 @@ display: flex;
 align-items: center;
 }
 .sidebar .nav-item .nav-link span{
-    padding:0 10PX 0 50PX;
+    padding:0 10PX 0 0PX;
 }
 nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow {
     direction: ltr;

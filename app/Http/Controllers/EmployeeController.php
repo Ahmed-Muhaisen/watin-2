@@ -9,6 +9,7 @@ use App\Models\Employee;
 use App\Models\restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class EmployeeController extends Controller
 {
@@ -29,6 +30,7 @@ public $base;
      }
     public function index()
     {
+         Gate::authorize('Employee.index');
         $employee=User::where('restaurant_id',Auth::user()->restaurant_id)->where('type','2')->get();
         $page='index';
         return view('employee.index',compact('employee','page'));
@@ -39,6 +41,7 @@ public $base;
      */
     public function create()
     {
+          Gate::authorize('Employee.create');
         $page='Create';
         $employees=User::where('type',1)->where('restaurant_id',null)->get();
         $restaurants=[Auth::user()->restaurant];
@@ -51,6 +54,7 @@ public $base;
      */
     public function store(Request $request)
     {
+          Gate::authorize('Employee.create');
         $validate_array= $this->base->validation($request,$action='store',$id='');
         $validate=$request->validate($validate_array);
         $user=User::find($request->user);
@@ -77,6 +81,7 @@ public $base;
      */
     public function edit(string $id)
     {
+        Gate::authorize('Employee.Update');
         $page='Edit';
 
         $employee=User::find($id);
@@ -90,6 +95,7 @@ public $base;
      */
     public function update(Request $request, string $id)
     {
+        Gate::authorize('Employee.Update');
 
         $validate_array= $this->base->validation($request,$action='update',$id);
         $validate=$request->validate($validate_array);
@@ -108,6 +114,7 @@ public $base;
      */
     public function destroy(string $id)
     {
+        Gate::authorize('Employee.delete');
 
         User::where('restaurant_id',Auth::user()->restaurant_id)->where('type','2')->findorfail($id)->update([
             "type"=>1
@@ -128,6 +135,7 @@ public $base;
 
     public function restore(string $id)
     {
+         Gate::authorize('Employee.restore');
         User::where('restaurant_id',Auth::user()->restaurant_id)->where('type','1')->findorfail($id)->update([
             "type"=>2
         ]);
@@ -137,6 +145,7 @@ public $base;
 
    public function forceDelete(string $id)
     {
+        Gate::authorize('Employee.forceDelete');
         User::findorfail($id)->update([
             "type"=>1,
             "restaurant_id"=>null

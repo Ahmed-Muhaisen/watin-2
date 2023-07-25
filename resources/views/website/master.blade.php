@@ -70,9 +70,8 @@ http://www.templatemo.com/tm-515-eatery
                         <a class="dropdown-item " style="
                         text-align: center;
                         padding-top: 5px;
-                        display: block;" href="{{route('website.my_orders')}}">
-                            وجباتي
-                        </a>
+                        display: block;" href="{{route('website.my_Cards')}}">
+                            سلة المشتريات                        </a>
                         <br style="background: #f13959;
                         display: inline-block;
                         height: 1px;
@@ -103,7 +102,7 @@ http://www.templatemo.com/tm-515-eatery
 
 
                 <!-- lOGO TEXT HERE -->
-                <a href="index.html" class="navbar-brand">مطاعم <span>.</span> تك</a>
+                <a href="{{route('index')}}" class="navbar-brand">مطاعم <span>.</span> تك</a>
             </div>
 
         <!-- MENU LINKS -->

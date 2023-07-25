@@ -33,8 +33,8 @@ class OrderController extends Controller
      }
     public function index()
     {
-       Gate::authorize('User.index');
-        $product = order::pluck('product_id')->toArray();
+       Gate::authorize('Order.index');
+        $product = Card::pluck('product_id')->toArray();
         $product=product::whereIn('id',$product)->where('restaurant_id',Auth::user()->restaurant->id)->with('user')->get();
         $page='index';
         return view('order.index',compact('product','page'));
@@ -45,7 +45,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        Gate::authorize('User.create');
+        Gate::authorize('Order.create');
         $user_id='';
         $page='Create';
         $products=product::where('restaurant_id',Auth::user()->restaurant->id)->get();
@@ -59,7 +59,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('User.create');
+        Gate::authorize('Order.create');
         $validate_array= $this->base->validation($request,$action='store',$id='');
         $validate=$request->validate($validate_array);
          $product =product::find($request->product_id)->first();
@@ -82,7 +82,7 @@ class OrderController extends Controller
      */
     public function edit(string $id,$user_id)
     {
-        Gate::authorize('User.Update');
+        Gate::authorize('Order.Update');
         $page='Edit';
      $products=product::where('restaurant_id',Auth::user()->restaurant->id)->get();
         $users=User::get();
@@ -95,7 +95,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        Gate::authorize('User.Update');
+        Gate::authorize('Order.Update');
         $validate_array= $this->base->validation($request,$action='update',$id);
         $validate=$request->validate($validate_array);
 
@@ -111,8 +111,8 @@ class OrderController extends Controller
      */
     public function destroy(string $id ,$user_id)
     {
-        Gate::authorize('User.delete');
-        $order= order::where('product_id', $id)
+        Gate::authorize('Order.delete');
+        $order= Card::where('product_id', $id)
          ->where('user_id', $user_id);
          $order->delete();
         return redirect()->route('admin.order.index')
@@ -123,7 +123,7 @@ class OrderController extends Controller
        public function trash()
     {
 
-        $order=order::onlyTrashed()->pluck('product_id')->toArray();
+        $order=Card::onlyTrashed()->pluck('product_id')->toArray();
 
         $product = product::whereIn('id',$order)->with('user')->get();
         $page='trash';
@@ -133,8 +133,8 @@ class OrderController extends Controller
 
     public function restore(string $id ,$user_id)
     {
-        Gate::authorize('User.restore');
-        $order= order::
+        Gate::authorize('Order.restore');
+        $order= Card::
         where('product_id', $id)
          ->where('user_id', $user_id)->withTrashed();
          $order->restore();
@@ -144,8 +144,8 @@ class OrderController extends Controller
 
    public function forceDelete(string $id ,$user_id)
     {
-        Gate::authorize('User.forceDelete');
-        $order= order::where('product_id', $id)
+        Gate::authorize('Order.forceDelete');
+        $order= Card::where('product_id', $id)
          ->where('user_id', $user_id)->withTrashed();
          $order->forceDelete();
 

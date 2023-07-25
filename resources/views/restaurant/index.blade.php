@@ -18,7 +18,9 @@
     @endif
 
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
+             @can('Restaurant.create', Auth::user())
             <a href="{{ route('admin.Restaurant.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm">إضافة مطعم جديد</a>
+            @endcan
         </div>
         <!-- DataTales Example -->
      <div class="card shadow mb-4">

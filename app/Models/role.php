@@ -16,6 +16,6 @@ public function permission()
 
 public function user()
 {
-    return $this->BelongsToMany(User::class,'role_user');
+    return $this->hasMany(User::class,'role_id');
 }
 }

@@ -48,10 +48,12 @@ margin:20px 0 ;
 .image-container2{
     height: 300px !important;
     margin: 0 ;
+
     }
     .image-container2 img{
         height: 100% !important;
         margin: 0 ;
+width: 100%;
         }
     .image-hight2{
         height: 100%;
@@ -87,5 +89,49 @@ margin:20px 0 ;
     display: flex;
     justify-content: center;
 
+}
+.addToCard{
+    transform: translate(230%, -366%);
+    position: absolute;
+
+    transition: all 0.7s ease;
+
+}
+.addToCard button{
+    padding: 23px;
+    background: #850026d9;
+    border: none;
+
+}
+
+.addToCard span{
+    line-height: 5px;
+    color: #fff;
+
+}
+
+.addToCard-x{
+    position: absolute;
+    transition: all 0.7s ease;
+    top: -187%;
+    right: 0;
+}
+.addToCard-x button{
+    padding:6px 25px;
+    background: #850026d9;
+    border: none;
+    color: #fff;
+
+
+}
+
+.addToCard-x span{
+    line-height: 5px;
+    color: #fff !important;
+
+}
+
+.menu-thumb:hover .addToCard{
+    transform: translate(130%, -377%);
 }
 
